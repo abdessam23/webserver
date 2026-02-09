@@ -1,8 +1,4 @@
-/*
-** showip.c
-**
-** show IP addresses for a host given on the command line
-*/
+
 
 #include <stdio.h>
 #include <string.h>
