@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -50,7 +49,8 @@ int main(void)
     int yes=1;
     char s[INET6_ADDRSTRLEN];
     int rv;
-
+    char buf[10];
+    read(0,buf,10);
     memset(&hints, 0, sizeof hints);
     hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
@@ -114,20 +114,20 @@ int main(void)
             perror("accept");
             continue;
         }
-        char* p;
+
         inet_ntop(their_addr.ss_family,
             get_in_addr((struct sockaddr *)&their_addr),
             s, sizeof s);
         printf("server: got connection from %s\n", s);
-
+        read(0,buf,10);
         if (!fork()) { // this is the child process
             close(sockfd); // child doesn't need the listener
-            if (recv(new_fd, p, 13, 0) == -1)
+            if (send(new_fd, buf, 10, 0) == -1)
                 perror("send");
-            printf("%s",p);
             close(new_fd);
             exit(0);
         }
+        memset(buf,0,10);
         close(new_fd);  // parent doesn't need this
     }
 
