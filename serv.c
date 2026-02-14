@@ -6,7 +6,7 @@ int main()
 {
     struct  addrinfo hints,*res;
     char buf[100];
-    hints.ai_family= AF_INET;
+    hints.ai_family= AF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = AI_PASSIVE;
 
@@ -43,7 +43,7 @@ int main()
         if(n == -1)
         {
             printf("read failed.");
-            return 1;
+            continue;
         }
         else 
             printf("buf : %s",buf);
