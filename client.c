@@ -20,27 +20,40 @@
 int main()
 {
     struct  addrinfo hints,*res;
-    hints.ai_family = AF_UNSPEC;
+    hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
-    hints.ai_flags = AI_PASSIVE;
+    hints.ai_flags =AI_PASSIVE; 
 
-    if(getaddrinfo("localhost",PORT,&hints,&res) == 0)
+    if(getaddrinfo("google.com",NULL,&hints,&res) != 0)
     {
     
         printf("info succed");
     }
-    struct addrinfo *rp;
-    int sfd;
-    for(rp = res;rp != NULL; rp = rp->ai_next)
+    struct addrinfo* pr;
+    for(pr = res;pr != NULL;pr = pr->ai_next)
     {
-        sfd = socket(rp->ai_family,rp->ai_socktype,rp->ai_protocol);
-        if (sfd == -1)
-            continue;
-        if (connect(sfd,rp->ai_addr,rp->ai_addrlen))
-        {
-            break;
-        }
-        close(sfd);
-    }
+        struct sockaddr_in* p =(struct sockaddr_in* ) pr->ai_addr;
+        char buf[INET_ADDRSTRLEN];
     
+        inet_ntop(AF_INET,&p->sin_addr,buf,sizeof buf);
+        printf("googele ---> : %s",buf);
+
+    }
+    freeaddrinfo(res);
+    // struct addrinfo *rp;
+    // int sfd;
+    // for(rp = res;rp != NULL; rp = rp->ai_next)
+    // {
+    //     sfd = socket(rp->ai_family,rp->ai_socktype,rp->ai_protocol);
+    //     if (sfd == -1)
+    //         continue;
+    //     if (connect(sfd,rp->ai_addr,rp->ai_addrlen))
+    //     {
+    //         break;
+    //     }
+    //     close(sfd);
+    // }
+    // write(sfd,"hello world!",12);
+    return 0;
+
 }

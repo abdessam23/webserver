@@ -23,6 +23,7 @@ int main()
         sfd = socket(rp->ai_family,rp->ai_socktype,rp->ai_protocol);
         if (sfd == -1)
             continue;
+        // listen(sfd,10)
         if (bind(sfd,(struct sockaddr*)rp->ai_addr,rp->ai_addrlen) == 0)
         {
             printf("fd : %d",sfd);
@@ -42,7 +43,6 @@ int main()
             continue;
         if(n == -1)
         {
-            printf("read failed.");
             continue;
         }
         else 
