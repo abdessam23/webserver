@@ -3,6 +3,7 @@
 #include <unistd.h>     // For close
 #include <stdio.h>      // For printf
 #include <stdlib.h>     // For exit
+#include <string.h>
 
 int main() {
     // 1. Create the socket (Domain: IPv4, Type: TCP)
@@ -41,9 +42,20 @@ int main() {
         perror("accept failed");
         exit(1);
     }
-
+    char buf[10];
     printf("Client connected! fd: %d\n", new_socket);
-
+    while (1)
+    {
+       read(new_socket,buf,10);
+       printf("the message recevied : %s \n",buf);
+       
+       if (buf[0] == 'q')
+        break;
+        memset(buf,0,10);
+    }
+    
+    
+    
     // Cleanup
     close(new_socket);
     close(server_fd);
