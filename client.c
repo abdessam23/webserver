@@ -21,8 +21,8 @@ int main()
 {
     struct  addrinfo hints,*res;
     hints.ai_family = AF_INET;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_flags =AI_PASSIVE; 
+//    h ints.ai_socktype = SOCK_STREAM;
+//     hints.ai_flags =AI_PASSIVE; 
 
     if(getaddrinfo("google.com",NULL,&hints,&res) != 0)
     {
@@ -35,8 +35,8 @@ int main()
         struct sockaddr_in* p =(struct sockaddr_in* ) pr->ai_addr;
         char buf[INET_ADDRSTRLEN];
     
-        inet_ntop(AF_INET,&p->sin_addr,buf,sizeof buf);
-        printf("googele ---> : %s",buf);
+        inet_ntohl(AF_INET,&p->sin_addr,buf,sizeof buf);
+        printf("googele ---> : %s\n",buf);
 
     }
     freeaddrinfo(res);
