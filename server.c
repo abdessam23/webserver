@@ -6,11 +6,11 @@
 #include <string.h>
 
 int main() {
-    // 1. Create the socket (Domain: IPv4, Type: TCP)
+
     int server_fd = socket(AF_INET,SOCK_STREAM, 0); 
     if (server_fd == -1) { perror("socket failed"); exit(1); }
 
-    // 2. Define the address (IP and Port)
+   
     struct sockaddr_in address;
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY; // Listen on 0.0.0.0 (any interface)
