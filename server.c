@@ -30,8 +30,7 @@ int main() {
 
     printf("Server listening on port 8080...\n");
 
-    // 5. Accept a connection
-    // We create generic storage for the client's address info
+
     struct sockaddr_storage client_addr;
     socklen_t addr_len = sizeof(client_addr);
 
