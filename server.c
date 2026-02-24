@@ -41,16 +41,16 @@ int main() {
         perror("accept failed");
         exit(1);
     }
-    char buf[10];
+    char buf[300];
     printf("Client connected! fd: %d\n", new_socket);
     while (1)
     {
-       read(new_socket,buf,10);
+       int i = read(new_socket,buf,300);
        printf("the message recevied : %s \n",buf);
-       
+       buf[i] = '\0';
        if (buf[0] == 'q')
         break;
-        memset(buf,0,10);
+        memset(buf,0,300);
     }
     
     
