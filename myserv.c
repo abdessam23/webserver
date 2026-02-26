@@ -31,9 +31,12 @@ int main()
         printf("listen failed.");
         return 1;
     }
-    sleep(10);
+    struct epoll_event* event;
+
+    
    printf("waiting for connection....\n");
-    int epoll_fd = epoll_create()
+    int epoll_fd = epoll_create(5);
+    epoll_ctl(epoll_fd,5,5,event);
      struct sockaddr_storage strg;
      socklen_t len_t = sizeof(strg);
    int newfd =  accept(sockfd,(struct sockaddr*)&strg,&len_t);
