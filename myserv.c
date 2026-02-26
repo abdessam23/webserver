@@ -4,6 +4,7 @@
 #include <netdb.h>
 #include <fcntl.h>
 #include <string.h>
+#include <sys/epoll.h>
 
 int main()
 {
@@ -32,6 +33,7 @@ int main()
     }
     sleep(10);
    printf("waiting for connection....\n");
+    int epoll_fd = epoll_create()
      struct sockaddr_storage strg;
      socklen_t len_t = sizeof(strg);
    int newfd =  accept(sockfd,(struct sockaddr*)&strg,&len_t);
