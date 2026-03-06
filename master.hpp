@@ -72,6 +72,7 @@ void Master::run()
             }
             else
             //break
+            break;
         }
     }
     
