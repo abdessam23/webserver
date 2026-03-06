@@ -70,6 +70,8 @@ void Master::run()
             else if (event.events && EPOLLOUT){
                 //write data;..........
             }
+            else
+            //break
         }
     }
     
