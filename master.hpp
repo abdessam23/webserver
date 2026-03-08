@@ -10,7 +10,7 @@
 class Master
 {
 private:
-    std::map<int,Client> m; 
+    std::map<int,Client*> m; 
 public:
     Master();
     void run();
@@ -81,10 +81,10 @@ void Master::run()
             }
             else if (event.events && EPOLLIN ) //??
             {
-                //read data; .........
+                //readrequest(); .........
             }
             else if (event.events && EPOLLOUT){
-                //write data;..........
+                //sendresponse;..........
             }
             else
             //break
